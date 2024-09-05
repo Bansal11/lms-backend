@@ -11,6 +11,19 @@ export class TestService {
     private questionService: QuestionService, // Inject the QuestionService
   ) {}
 
+  async create(test: {
+    title: string;
+    description: string;
+    questions: string[];
+    uniqueURL: string;
+  }): Promise<Test> {
+
+    let createdTest = new this.testModel(test);
+
+    return createdTest.save();
+
+  }
+
   async findById(testId: string): Promise<Test> {
     const test = await this.testModel.findById(testId).exec();
     if (!test) {

@@ -5,7 +5,7 @@ import { NextFunction } from 'express';
 export class AdminMiddleware implements NestMiddleware {
   async use(req: any, res: any, next: NextFunction) {
     const user = req['user'];
-
+    console.log(user);
     if (user && user.role === 'admin') {
       next();
     } else {
